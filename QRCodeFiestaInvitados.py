@@ -19,4 +19,23 @@ def create_qr_code(text, output_filename):
 
     img.save(output_filename)
 
-    
+
+
+def generate_qr_codes_for_guests(guest_list):
+    for index, guest in enumerate(guest_list, start = 1):
+        guest_name = guest["name"]
+        qr_data = f"Guest Name : {guest_name}\nID: {index}"
+        output_filename = f"qr_codes/qr_{index}_{guest_name}.png"
+
+        create_qr_code(qr_data, output_filename)
+        print(f"Codigo QR generado para {guest_name}: {output_filename}")  
+
+
+guest_list = [
+    {"name":"Juan Perez"},
+    {"name": "Maria Lopez"},
+    {"name": "Carlos Gomez"}
+]
+
+
+generate_qr_codes_for_guests(guest_list)
